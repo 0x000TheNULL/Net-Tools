@@ -1,12 +1,12 @@
 # Network Engineer Toolbox
 
 <p align="center">
-  <img src="./public/og.png" alt="Network Engineer Toolbox — Interactive Engineering Field Manual" width="100%" />
+  <img src="./public/og.png" alt="Network Engineer Toolbox" width="100%" />
 </p>
 
 <p align="center">
-  The small tools that usually make you open five different tabs.<br />
-  Now they live in one place, so your workflow does not have to wander around the internet.
+  Practical network calculations, diagnostics, and references.<br />
+  One calm workspace for the technical details that still need to be correct.
 </p>
 
 <p align="center">
@@ -21,11 +21,11 @@
 
 Instead of jumping between websites to calculate a subnet, inspect SPF, encode Base64, and generate a SHA-256 digest, this project puts all of that in one focused workspace.
 
-The interface is designed like an **interactive engineering field manual**. Tools have indexed IDs, metadata stays compact, results are structured, and copy buttons appear where they are actually useful. It is not a dashboard packed with charts that somehow hides the one value you came to find.
+The interface works like a modern productivity app: a clear tool directory on the left, one focused workspace in the middle, and structured results that are easy to scan and copy. The engineering stays detailed without dressing everything up like a terminal.
 
 The short version:
 
-- **22 utilities** across five practical chapters.
+- **22 utilities** across five practical categories.
 - Calculations and cryptographic operations run locally whenever possible.
 - DNS lookups use DNS-over-HTTPS.
 - Global search, favorites, recent tools, and a command palette are built in.
@@ -34,72 +34,72 @@ The short version:
 
 ## What is inside?
 
-| Chapter | What it handles | Count |
+| Category | What it handles | Count |
 | --- | --- | ---: |
-| `01 / IP & Subnet` | Address planning, masks, ranges, and wildcard calculations | 5 tools |
-| `02 / DNS` | Record lookups and email-related DNS checks | 4 tools |
-| `03 / Email` | SPF, DKIM, DMARC, and email-header analysis | 4 tools |
-| `04 / Network` | Ports, CIDR, IP ranges, VLANs, and HTTP references | 5 tools |
-| `05 / Utilities` | Encoding, hashing, encryption, key derivation, and JSON | 4 tools |
+| IP & Subnet | Address planning, masks, ranges, and wildcard calculations | 5 tools |
+| DNS | Record lookups and email-related DNS checks | 4 tools |
+| Email | SPF, DKIM, DMARC, and email-header analysis | 4 tools |
+| Network | Ports, CIDR, IP ranges, VLANs, and HTTP references | 5 tools |
+| Utilities | Encoding, hashing, encryption, key derivation, and JSON | 4 tools |
 
-## 01 / IP & Subnet
+## IP & Subnet
 
 IPv4 calculations that can technically be done by hand. They can also be done faster and more consistently by the browser, which feels like the better use of everyone's afternoon.
 
-| ID | Tool | What you get |
-| --- | --- | --- |
-| `IP/001` | Subnet Calculator | Network address, broadcast address, subnet mask, wildcard, first and last host, capacity, and binary notation. |
-| `IP/002` | CIDR to Subnet Mask | Converts a prefix such as `/24` into `255.255.255.0`. |
-| `IP/003` | Subnet Mask to CIDR | Validates a dotted-decimal mask and resolves its CIDR prefix. |
-| `IP/004` | IP Range Calculator | Counts the addresses between a starting and ending IPv4 address. |
-| `IP/005` | Wildcard Mask Calculator | Generates the inverse mask used by ACLs and routing protocols. |
+| Tool | What you get |
+| --- | --- |
+| Subnet Calculator | Network address, broadcast address, subnet mask, wildcard, first and last host, and capacity. |
+| CIDR to Subnet Mask | Converts a prefix such as `/24` into `255.255.255.0`. |
+| Subnet Mask to CIDR | Validates a dotted-decimal mask and resolves its CIDR prefix. |
+| IP Range Calculator | Counts the addresses between a starting and ending IPv4 address. |
+| Wildcard Mask Calculator | Generates the inverse mask used by ACLs and routing protocols. |
 
-## 02 / DNS
+## DNS
 
 Quick DNS inspection without opening a terminal when all you need is a clear look at the records.
 
-| ID | Tool | What you get |
-| --- | --- | --- |
-| `DNS/001` | DNS Lookup | Queries `A`, `AAAA`, `CNAME`, `MX`, `TXT`, `NS`, `SOA`, and `PTR` records. |
-| `DNS/002` | Reverse DNS Lookup | Converts IPv4 into a reverse lookup name and retrieves its PTR record. |
-| `DNS/003` | MX Lookup | Shows domain mail exchangers and their priorities. |
-| `DNS/004` | TXT / SPF Lookup | Retrieves TXT records and isolates the SPF policy. |
+| Tool | What you get |
+| --- | --- |
+| DNS Lookup | Queries `A`, `AAAA`, `CNAME`, `MX`, `TXT`, `NS`, `SOA`, and `PTR` records. |
+| Reverse DNS Lookup | Converts IPv4 into a reverse lookup name and retrieves its PTR record. |
+| MX Lookup | Shows domain mail exchangers and their priorities. |
+| TXT / SPF Lookup | Retrieves TXT records and isolates the SPF policy. |
 
 Queries are sent to Cloudflare's JSON DNS-over-HTTPS endpoint. That means the domain name and requested record type leave the browser. Inputs from unrelated local tools do not tag along for the trip.
 
-## 03 / Email
+## Email
 
 Email authentication looks like a few TXT records until one character is wrong and messages start drifting into spam. These tools make the records easier to inspect before that becomes everyone's problem.
 
-| ID | Tool | What you get |
-| --- | --- | --- |
-| `MAIL/001` | SPF Record Checker | Parses mechanisms, estimates DNS-lookup pressure, and identifies the terminal policy. |
-| `MAIL/002` | DKIM Selector Helper | Builds selector-specific DKIM hostnames and queries public-key records. |
-| `MAIL/003` | DMARC Record Checker | Reads enforcement policy, reporting addresses, percentages, and alignment settings. |
-| `MAIL/004` | Email Header Analyzer | Parses identities, message metadata, authentication verdicts, and received hops. |
+| Tool | What you get |
+| --- | --- |
+| SPF Record Checker | Parses mechanisms, estimates DNS-lookup pressure, and identifies the terminal policy. |
+| DKIM Selector Helper | Builds selector-specific DKIM hostnames and queries public-key records. |
+| DMARC Record Checker | Reads enforcement policy, reporting addresses, percentages, and alignment settings. |
+| Email Header Analyzer | Parses identities, message metadata, authentication verdicts, and received hops. |
 
-## 04 / Network
+## Network
 
 The references people usually need while something is already on fire. Search by number, service name, or the one keyword you still remember.
 
-| ID | Tool | What you get |
-| --- | --- | --- |
-| `NET/001` | Port Reference | Common TCP/UDP ports, service names, and operational notes. |
-| `NET/002` | CIDR Reference Table | Prefixes, subnet masks, total addresses, and usable host counts. |
-| `NET/003` | Private / Public IP Reference | Private, public, loopback, link-local, multicast, and reserved ranges. |
-| `NET/004` | VLAN ID Reference | Normal, extended, and reserved IEEE 802.1Q VLAN ranges. |
-| `NET/005` | HTTP Status Reference | Searchable HTTP responses by code, class, or meaning. |
+| Tool | What you get |
+| --- | --- |
+| Port Reference | Common TCP/UDP ports, service names, and operational notes. |
+| CIDR Reference Table | Prefixes, subnet masks, total addresses, and usable host counts. |
+| Private / Public IP Reference | Private, public, loopback, link-local, multicast, and reserved ranges. |
+| VLAN ID Reference | Normal, extended, and reserved IEEE 802.1Q VLAN ranges. |
+| HTTP Status Reference | Searchable HTTP responses by code, class, or meaning. |
 
-## 05 / Utilities
+## Utilities
 
 Small data transformations that always seem to appear at the least convenient moment.
 
-| ID | Tool | What you get |
-| --- | --- | --- |
-| `UTIL/001` | Base64 Encode / Decode | Converts UTF-8 text to Base64 and back. |
-| `UTIL/002` | URL Encode / Decode | Encodes and decodes URI component values. |
-| `UTIL/003` | Encode & Crypto Lab | Ten accurately classified encoding and cryptographic workflows. |
-| `UTIL/004` | JSON Formatter / Validator | Validates, formats, minifies, copies, and exports JSON. |
+| Tool | What you get |
+| --- | --- |
+| Base64 Encode / Decode | Converts UTF-8 text to Base64 and back. |
+| URL Encode / Decode | Encodes and decodes URI component values. |
+| Encode & Crypto Lab | Ten accurately classified encoding and cryptographic workflows. |
+| JSON Formatter / Validator | Validates, formats, minifies, copies, and exports JSON. |
 
 ## The crypto section, where not everything gets called “encryption”
 
@@ -144,7 +144,7 @@ flowchart LR
     Surface --> Reference[Reference datasets]
     Surface --> Crypto[Web Crypto API]
     DNS --> DoH[Cloudflare DNS-over-HTTPS]
-    UI --> LocalStorage[Favorites, recent tools, and theme]
+    UI --> LocalStorage[Favorites and recent tools]
 ```
 
 There is no database and no custom application backend for the current feature set. Almost everything runs in the browser. DNS lookups are the obvious exception because DNS records do, unfortunately, need to be requested from a resolver.
@@ -214,7 +214,7 @@ Net-Tools/
 
 The files most likely to matter first:
 
-- `data/tools.ts` — names, categories, descriptions, tags, and IDs such as `IP/001`.
+- `data/tools.ts` — names, categories, descriptions, tags, and stable internal IDs.
 - `features/tools/tool-surface.tsx` — connects registry entries to their interactive components.
 - `lib/network.ts` — IPv4 parsing and calculations.
 - `lib/dns.ts` — DNS-over-HTTPS plus SPF, DMARC, and email-header parsing.
@@ -233,7 +233,7 @@ The files most likely to matter first:
 - AES and RSA operations
 - PBKDF2 key derivation
 - Email-header parsing
-- Favorites, recent tools, and theme preferences
+- Favorites and recent tools
 
 ### Leaves the browser
 
@@ -253,9 +253,15 @@ Lightweight preferences are stored in `localStorage`:
 | --- | --- |
 | `netops:favorites` | IDs of tools pinned by the user |
 | `netops:recent` | The five most recently opened tool IDs |
-| `netops:theme` | The selected light or dark theme |
+The command palette opens with `Ctrl+K` or `⌘K`. Global search matches tool names, descriptions, categories, and tags.
 
-The command palette opens with `Ctrl+K` or `⌘K`. Global search matches tool names, descriptions, chapters, and tags.
+## The visual system
+
+The toolbox is designed as a light productivity app that belongs next to [msyaddin.cloud](https://msyaddin.cloud), not as a cybersecurity dashboard. The shared system uses Manrope for the interface, a warm `#e9e0d2` canvas, `#f1e9dd` surfaces, `#241c18` text, and a restrained `#a44730` accent. Corners stay square, borders do most of the separating, and shadows are kept quiet.
+
+Monospace is reserved for values where alignment genuinely helps: IP addresses, subnet masks, hashes, keys, JSON, encoded text, and similar technical output. Navigation, labels, buttons, and explanations use the regular interface typeface.
+
+On smaller screens, navigation becomes a slide-over panel, forms collapse to a single column, and wide reference data keeps its horizontal overflow instead of becoming a tower of tiny cards.
 
 ## What has been checked
 
@@ -264,7 +270,7 @@ The command palette opens with `Ctrl+K` or `⌘K`. Global search matches tool na
 - SHA-256 was generated through the rendered interface, not just a separate helper function.
 - AES-GCM-256 completed an encrypt/decrypt round trip back to the original plaintext.
 - RSA-OAEP-2048 generated a key pair and completed an encrypt/decrypt round trip.
-- Desktop layout and responsive rules were inspected.
+- Desktop layout, responsive rules, search, favorites, tool URLs, and the command palette were inspected.
 - `git diff --check` was clean before publication.
 
 This repository includes a fairly large set of generated shadcn-compatible primitives. A full lint run may surface accessibility or compiler rules in unused generated primitives. The production build and active application paths are validated separately.
@@ -292,7 +298,7 @@ Go for it. The usual path looks like this:
 6. Check keyboard navigation and the mobile layout.
 7. Run the production build before opening a pull request.
 
-New features should keep the same basic principles: use accurate terminology, keep local data local, make results easy to read, and do not make the interface shout just to look advanced.
+New features should keep the same basic principles: use accurate terminology, keep local data local, make results easy to read, and let the interface stay calm.
 
 ## License
 
@@ -308,4 +314,4 @@ Technology / Infrastructure Engineer
 
 ---
 
-If this toolbox saves one troubleshooting session from turning into five nearly identical browser tabs, it has done its job.
+Built for the ordinary network questions that still deserve a clear, reliable answer.

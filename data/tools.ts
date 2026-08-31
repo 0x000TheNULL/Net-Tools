@@ -12,7 +12,7 @@ export const categories: Array<{
 ];
 
 export const tools: ToolDefinition[] = [
-  { id: 'subnet-calculator', name: 'Subnet Calculator', shortName: 'Subnet', description: 'Resolve network boundaries, masks, host ranges, and binary notation.', category: 'IP & Subnet', tags: ['ipv4', 'cidr', 'mask', 'hosts'], featured: true },
+  { id: 'subnet-calculator', name: 'Subnet Calculator', shortName: 'Subnet', description: 'Calculate network boundaries, masks, and usable host ranges.', category: 'IP & Subnet', tags: ['ipv4', 'cidr', 'mask', 'hosts'], featured: true },
   { id: 'cidr-to-mask', name: 'CIDR to Subnet Mask', shortName: 'CIDR → mask', description: 'Convert a prefix length to dotted-decimal notation.', category: 'IP & Subnet', tags: ['cidr', 'prefix', 'mask'] },
   { id: 'mask-to-cidr', name: 'Subnet Mask to CIDR', shortName: 'Mask → CIDR', description: 'Validate a subnet mask and resolve its prefix length.', category: 'IP & Subnet', tags: ['mask', 'cidr', 'validate'] },
   { id: 'ip-range', name: 'IP Range Calculator', shortName: 'IP range', description: 'Measure a start/end range and total address capacity.', category: 'IP & Subnet', tags: ['range', 'hosts', 'capacity'] },

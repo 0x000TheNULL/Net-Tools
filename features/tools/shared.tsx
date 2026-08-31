@@ -3,7 +3,6 @@
 import { useState, type ReactNode } from 'react';
 import { Check, Copy, Download, RotateCcw } from 'lucide-react';
 
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import type { ResultRow } from '@/types/tools';
@@ -69,6 +68,7 @@ export function CopyButton({ value, label = 'Copy' }: { value: string; label?: s
       type="button"
       size="sm"
       variant="ghost"
+      aria-label={copied ? 'Copied' : label || 'Copy value'}
       onClick={async () => {
         await navigator.clipboard.writeText(value);
         setCopied(true);
@@ -81,7 +81,7 @@ export function CopyButton({ value, label = 'Copy' }: { value: string; label?: s
 }
 
 export function EmptyState({ children = 'Run the tool to generate a structured result.' }: { children?: ReactNode }) {
-  return <div className="empty-result"><span className="empty-glyph">_</span><p>{children}</p></div>;
+  return <div className="empty-result"><b>No results yet</b><p>{children}</p></div>;
 }
 
 export function ErrorState({ message }: { message: string }) {
@@ -100,7 +100,7 @@ export function Results({
   return (
     <section className="structured-results" aria-live="polite">
       <div className="result-toolbar">
-        <div><span>OUTPUT / READY</span><h3>{title}</h3></div>
+        <div><h3>{title}</h3></div>
         <div>
           {exportName && (
             <Button type="button" size="sm" variant="ghost" onClick={() => {
@@ -114,16 +114,15 @@ export function Results({
           <CopyButton value={plain} label="Copy all" />
         </div>
       </div>
-      <div className="result-matrix">
+      <dl className="result-matrix">
         {rows.map((row) => (
-          <div className="matrix-row" key={row.label}>
-            <span>{row.label}</span>
-            <code>{row.value}</code>
-            {row.tone && <Badge className={`tone-${row.tone}`}>{row.tone}</Badge>}
+          <div className="matrix-row" data-tone={row.tone ?? 'default'} key={row.label}>
+            <dt>{row.label}</dt>
+            <dd><code>{row.value}</code></dd>
             <CopyButton value={row.value} label="" />
           </div>
         ))}
-      </div>
+      </dl>
       {note && <p className="result-note">{note}</p>}
     </section>
   );

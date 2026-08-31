@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     template: '%s | Network Engineer Toolbox',
   },
   description:
-    'An interactive engineering field manual for IP, DNS, email, networking, encoding, and browser-native cryptography.',
+    'Practical network calculations, diagnostics, references, and browser-native cryptography in one place.',
   keywords: [
     'network engineer tools',
     'subnet calculator',
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     type: 'website',
     title: 'Network Engineer Toolbox',
     description:
-      'An interactive engineering field manual for networking, diagnostics, and browser-native cryptography.',
+      'Practical network calculations, diagnostics, and references in one place.',
     images: [{
       url: 'https://network-engineer-toolbox-eikon.diskoginza.chatgpt.site/og.png',
       width: 1200,
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Network Engineer Toolbox',
     description:
-      'An interactive engineering field manual for networking, diagnostics, and browser-native cryptography.',
+      'Practical network calculations, diagnostics, and references in one place.',
     images: ['https://network-engineer-toolbox-eikon.diskoginza.chatgpt.site/og.png'],
   },
 };
@@ -54,7 +54,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

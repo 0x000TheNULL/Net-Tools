@@ -53,7 +53,6 @@ export function subnetRows(ip: string, cidr: number): ResultRow[] {
     { label: 'Last host', value: intToIp(last) },
     { label: 'Total addresses', value: total.toLocaleString() },
     { label: 'Usable hosts', value: usable.toLocaleString(), tone: 'success' },
-    { label: 'Binary network', value: network.toString(2).padStart(32, '0').match(/.{8}/g)?.join('.') ?? '' },
   ];
 }
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { ArrowRight, Check, KeyRound, LockKeyhole, RefreshCw, ShieldCheck } from 'lucide-react';
+import { Check, KeyRound, LockKeyhole, RefreshCw, ShieldCheck } from 'lucide-react';
 
 import { decodeBase64, encodeBase64 } from '@/lib/codec';
 import {
@@ -19,28 +19,27 @@ type Operation = 'encode' | 'decode' | 'digest' | 'sign' | 'encrypt' | 'decrypt'
 
 const methods: Array<{
   id: MethodId;
-  number: string;
   name: string;
   family: string;
   detail: string;
   operations: Operation[];
   standard: string;
 }> = [
-  { id: 'base64', number: '01', name: 'Base64', family: 'Encoding', detail: 'Binary-to-text transport encoding', operations: ['encode', 'decode'], standard: 'RFC 4648' },
-  { id: 'url', number: '02', name: 'URL Percent', family: 'Encoding', detail: 'URI component escaping', operations: ['encode', 'decode'], standard: 'RFC 3986' },
-  { id: 'sha256', number: '03', name: 'SHA-256', family: 'Hash', detail: '256-bit one-way digest', operations: ['digest'], standard: 'FIPS 180-4' },
-  { id: 'sha384', number: '04', name: 'SHA-384', family: 'Hash', detail: '384-bit one-way digest', operations: ['digest'], standard: 'FIPS 180-4' },
-  { id: 'sha512', number: '05', name: 'SHA-512', family: 'Hash', detail: '512-bit one-way digest', operations: ['digest'], standard: 'FIPS 180-4' },
-  { id: 'hmac', number: '06', name: 'HMAC-SHA-256', family: 'Authentication', detail: 'Keyed integrity signature', operations: ['sign'], standard: 'RFC 2104' },
-  { id: 'aes-gcm', number: '07', name: 'AES-GCM-256', family: 'Encryption', detail: 'Authenticated symmetric encryption', operations: ['encrypt', 'decrypt'], standard: 'NIST SP 800-38D' },
-  { id: 'aes-cbc', number: '08', name: 'AES-CBC-256', family: 'Encryption', detail: 'Legacy symmetric block mode', operations: ['encrypt', 'decrypt'], standard: 'NIST SP 800-38A' },
-  { id: 'rsa', number: '09', name: 'RSA-OAEP-2048', family: 'Encryption', detail: 'Asymmetric encryption with SHA-256', operations: ['encrypt', 'decrypt'], standard: 'RFC 8017' },
-  { id: 'pbkdf2', number: '10', name: 'PBKDF2-SHA-256', family: 'Key derivation', detail: 'Passphrase-to-key derivation', operations: ['derive'], standard: 'RFC 8018' },
+  { id: 'base64', name: 'Base64', family: 'Encoding', detail: 'Binary-to-text transport encoding', operations: ['encode', 'decode'], standard: 'RFC 4648' },
+  { id: 'url', name: 'URL Percent', family: 'Encoding', detail: 'URI component escaping', operations: ['encode', 'decode'], standard: 'RFC 3986' },
+  { id: 'sha256', name: 'SHA-256', family: 'Hash', detail: '256-bit one-way digest', operations: ['digest'], standard: 'FIPS 180-4' },
+  { id: 'sha384', name: 'SHA-384', family: 'Hash', detail: '384-bit one-way digest', operations: ['digest'], standard: 'FIPS 180-4' },
+  { id: 'sha512', name: 'SHA-512', family: 'Hash', detail: '512-bit one-way digest', operations: ['digest'], standard: 'FIPS 180-4' },
+  { id: 'hmac', name: 'HMAC-SHA-256', family: 'Authentication', detail: 'Keyed integrity signature', operations: ['sign'], standard: 'RFC 2104' },
+  { id: 'aes-gcm', name: 'AES-GCM-256', family: 'Encryption', detail: 'Authenticated symmetric encryption', operations: ['encrypt', 'decrypt'], standard: 'NIST SP 800-38D' },
+  { id: 'aes-cbc', name: 'AES-CBC-256', family: 'Encryption', detail: 'Legacy symmetric block mode', operations: ['encrypt', 'decrypt'], standard: 'NIST SP 800-38A' },
+  { id: 'rsa', name: 'RSA-OAEP-2048', family: 'Encryption', detail: 'Asymmetric encryption with SHA-256', operations: ['encrypt', 'decrypt'], standard: 'RFC 8017' },
+  { id: 'pbkdf2', name: 'PBKDF2-SHA-256', family: 'Key derivation', detail: 'Passphrase-to-key derivation', operations: ['derive'], standard: 'RFC 8018' },
 ];
 
 const samples: Record<MethodId, string> = {
   base64: 'Network engineering, without the noise.',
-  url: 'site=network toolbox&mode=field manual',
+  url: 'site=network toolbox&mode=utility',
   sha256: 'network-engineer-toolbox',
   sha384: 'network-engineer-toolbox',
   sha512: 'network-engineer-toolbox',
@@ -154,24 +153,24 @@ export function CryptoLab() {
   return (
     <div className="crypto-manual">
       <aside className="crypto-index" aria-label="Cryptography method index">
-        <div className="crypto-index-head"><span>METHOD INDEX</span><b>10 / LOCAL</b></div>
+        <div className="crypto-index-head"><span>Methods</span><b>10 options</b></div>
         {methods.map((item) => (
-          <button key={item.id} className={item.id === methodId ? 'crypto-method is-active' : 'crypto-method'} onClick={() => chooseMethod(item.id)}>
-            <span>{item.number}</span><div><b>{item.name}</b><small>{item.family}</small></div><ArrowRight size={13} />
+          <button key={item.id} aria-label={`${item.name}, ${item.family}`} className={item.id === methodId ? 'crypto-method is-active' : 'crypto-method'} onClick={() => chooseMethod(item.id)}>
+            <div><b>{item.name}</b><small>{item.family}</small></div>
           </button>
         ))}
       </aside>
 
       <section className="crypto-workbench">
         <header className="crypto-method-head">
-          <div><span>{method.family.toUpperCase()} / {method.number}</span><h2>{method.name}</h2><p>{method.detail}</p></div>
+          <div><span>{method.family}</span><h2>{method.name}</h2><p>{method.detail}</p></div>
           <code>{method.standard}</code>
         </header>
 
         <form className="crypto-form" onSubmit={(event) => { event.preventDefault(); void run(); }}>
           {method.operations.length > 1 && (
             <div className="operation-switch" aria-label="Operation">
-              {method.operations.map((item) => <button key={item} type="button" className={operation === item ? 'is-active' : ''} onClick={() => { setOperation(item); setRows(null); setError(''); }}>{item.toUpperCase()}</button>)}
+              {method.operations.map((item) => <button key={item} type="button" className={operation === item ? 'is-active' : ''} onClick={() => { setOperation(item); setRows(null); setError(''); }}>{operationLabel(item)}</button>)}
             </div>
           )}
 
@@ -185,16 +184,16 @@ export function CryptoLab() {
 
           {methodId === 'rsa' && (
             <div className="rsa-keyset">
-              <div className="rsa-keyset-head"><span>KEY MATERIAL / LOCAL</span><button type="button" onClick={() => void generateKeys()} disabled={loading}><KeyRound size={13} /> {publicKey ? 'Regenerate pair' : 'Generate RSA pair'}</button></div>
+              <div className="rsa-keyset-head"><span>Key material</span><button type="button" onClick={() => void generateKeys()} disabled={loading}><KeyRound size={13} /> {publicKey ? 'Regenerate pair' : 'Generate RSA pair'}</button></div>
               <label className="work-field"><span>Public key / SPKI PEM</span><textarea value={publicKey} onChange={(event) => setPublicKey(event.target.value)} rows={5} spellCheck={false} /></label>
               <label className="work-field"><span>Private key / PKCS8 PEM</span><textarea value={privateKey} onChange={(event) => setPrivateKey(event.target.value)} rows={5} spellCheck={false} /></label>
             </div>
           )}
 
           <div className="crypto-actions">
-            <button className="crypto-run" type="submit" disabled={loading}>{loading ? <><span className="spinner" /> WORKING</> : <><LockKeyhole size={14} /> {operationLabel(operation).toUpperCase()}</>}</button>
-            <button className="crypto-reset" type="button" onClick={reset}>RESET</button>
-            <span><ShieldCheck size={13} /> CLIENT-SIDE ONLY</span>
+            <button className="crypto-run" type="submit" disabled={loading}>{loading ? <><span className="spinner" /> Working…</> : <><LockKeyhole size={14} /> {operationLabel(operation)}</>}</button>
+            <button className="crypto-reset" type="button" onClick={reset}>Reset</button>
+            <span><ShieldCheck size={13} /> Runs in this browser</span>
           </div>
         </form>
 

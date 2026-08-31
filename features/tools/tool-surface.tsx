@@ -1,25 +1,23 @@
 'use client';
 
 import {
-  Binary, Braces, Cable, Code2, FileJson, Fingerprint, Globe2, Hash,
-  ListTree, MailCheck, Network, Router, SearchCode, Send, ShieldCheck,
+  ArrowLeftRight, Braces, Cable, Code2, FileJson, Fingerprint, Globe2, Hash,
+  ListTree, MailCheck, Network, Router, SearchCode, Send, ShieldCheck, Star,
 } from 'lucide-react';
 
-import { Badge } from '@/components/ui/badge';
-import { toolCode } from '@/data/tools';
 import type { ToolDefinition } from '@/types/tools';
 import { DkimHelper, DmarcChecker, DnsLookup, EmailHeaderAnalyzer, SpfChecker, TxtSpfLookup } from './dns-tools';
 import { CidrReference, CidrToMask, IpRangeCalculator, IpReference, MaskToCidr, SubnetCalculator, WildcardCalculator } from './network-tools';
 import { Base64Tool, HashGenerator, HttpStatusReference, JsonFormatter, PortReference, PrivateIpReference, UrlCodecTool, VlanReference } from './utility-tools';
 
 const iconById = {
-  'subnet-calculator': Network, 'cidr-to-mask': Binary, 'mask-to-cidr': Binary,
+  'subnet-calculator': Network, 'cidr-to-mask': ArrowLeftRight, 'mask-to-cidr': ArrowLeftRight,
   'ip-range': ListTree, 'wildcard-mask': Router, 'dns-lookup': Globe2,
   'reverse-dns': SearchCode, 'mx-lookup': Send, 'txt-spf-lookup': FileJson,
   'spf-checker': ShieldCheck, 'dkim-helper': Fingerprint, 'dmarc-checker': MailCheck,
   'email-header': MailCheck, 'port-reference': Cable, 'cidr-reference': ListTree,
   'ip-reference': Network, 'vlan-reference': Router, 'http-status': Globe2,
-  base64: Binary, 'url-codec': Code2, 'hash-generator': Hash, 'json-formatter': Braces,
+  base64: Code2, 'url-codec': Code2, 'hash-generator': Hash, 'json-formatter': Braces,
 } as const;
 
 export function ToolIcon({ id, size = 18 }: { id: string; size?: number }) {
@@ -67,15 +65,14 @@ export function ToolSurface({
       <header className="active-tool-head">
         <div className="active-tool-icon"><ToolIcon id={tool.id} size={22} /></div>
         <div>
-          <span className="active-tool-code">{toolCode(tool)} / FIELD UTILITY</span>
-          <div className="active-title-line"><h1>{tool.name}</h1><Badge variant="outline">{tool.category}</Badge></div>
+          <span className="active-tool-code">{tool.category}</span>
+          <div className="active-title-line"><h1>{tool.name}</h1></div>
           <p>{tool.description}</p>
         </div>
         <button onClick={onToggleFavorite} className={favorite ? 'pin-action is-pinned' : 'pin-action'} aria-label={favorite ? 'Remove from favorites' : 'Add to favorites'}>
-          <span>{favorite ? 'Pinned' : 'Pin tool'}</span><ShieldCheck size={15} />
+          <Star size={15} fill={favorite ? 'currentColor' : 'none'} /><span>{favorite ? 'Saved' : 'Add to favorites'}</span>
         </button>
       </header>
-      <div className="active-tool-sequence" aria-hidden="true"><span>INPUT / 01</span><span>RESULT / 02</span><span>DETAILS / 03</span><span>REFERENCE / 04</span></div>
       <div className="active-tool-body">{renderTool(tool.id)}</div>
     </article>
   );
