@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 
 import { Badge } from '@/components/ui/badge';
+import { toolCode } from '@/data/tools';
 import type { ToolDefinition } from '@/types/tools';
 import { DkimHelper, DmarcChecker, DnsLookup, EmailHeaderAnalyzer, SpfChecker, TxtSpfLookup } from './dns-tools';
 import { CidrReference, CidrToMask, IpRangeCalculator, IpReference, MaskToCidr, SubnetCalculator, WildcardCalculator } from './network-tools';
@@ -66,6 +67,7 @@ export function ToolSurface({
       <header className="active-tool-head">
         <div className="active-tool-icon"><ToolIcon id={tool.id} size={22} /></div>
         <div>
+          <span className="active-tool-code">{toolCode(tool)} / FIELD UTILITY</span>
           <div className="active-title-line"><h1>{tool.name}</h1><Badge variant="outline">{tool.category}</Badge></div>
           <p>{tool.description}</p>
         </div>
@@ -73,6 +75,7 @@ export function ToolSurface({
           <span>{favorite ? 'Pinned' : 'Pin tool'}</span><ShieldCheck size={15} />
         </button>
       </header>
+      <div className="active-tool-sequence" aria-hidden="true"><span>INPUT / 01</span><span>RESULT / 02</span><span>DETAILS / 03</span><span>REFERENCE / 04</span></div>
       <div className="active-tool-body">{renderTool(tool.id)}</div>
     </article>
   );

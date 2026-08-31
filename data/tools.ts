@@ -8,7 +8,7 @@ export const categories: Array<{
   { name: 'DNS', description: 'Live DNS-over-HTTPS record inspection and reverse lookup.' },
   { name: 'Email', description: 'SPF, DKIM, DMARC, and mail-path diagnostics.' },
   { name: 'Network', description: 'Ports, VLANs, CIDR, IP, and HTTP quick references.' },
-  { name: 'Encoding', description: 'Safe local encoders, hashes, and JSON utilities.' },
+  { name: 'Utilities', description: 'Encoding, cryptography, hashes, and structured-data utilities.' },
 ];
 
 export const tools: ToolDefinition[] = [
@@ -30,10 +30,19 @@ export const tools: ToolDefinition[] = [
   { id: 'ip-reference', name: 'Private / Public IP Reference', shortName: 'IP reference', description: 'Classify IPv4 ranges and reserved address space.', category: 'Network', tags: ['private', 'public', 'reserved'] },
   { id: 'vlan-reference', name: 'VLAN ID Reference', shortName: 'VLAN IDs', description: 'Quick guidance for normal, reserved, and extended VLAN ranges.', category: 'Network', tags: ['vlan', '802.1q', 'switching'] },
   { id: 'http-status', name: 'HTTP Status Reference', shortName: 'HTTP status', description: 'Search response codes by class, meaning, or number.', category: 'Network', tags: ['http', 'status', 'web'] },
-  { id: 'base64', name: 'Base64 Encode / Decode', shortName: 'Base64', description: 'Transform UTF-8 text locally in your browser.', category: 'Encoding', tags: ['base64', 'encode', 'decode'], featured: true },
-  { id: 'url-codec', name: 'URL Encode / Decode', shortName: 'URL codec', description: 'Encode or decode query values and URL components.', category: 'Encoding', tags: ['url', 'percent', 'decode'] },
-  { id: 'hash-generator', name: 'Hash Generator', shortName: 'Hashes', description: 'Generate MD5, SHA-1, or SHA-256 digests locally.', category: 'Encoding', tags: ['md5', 'sha1', 'sha256'] },
-  { id: 'json-formatter', name: 'JSON Formatter / Validator', shortName: 'JSON', description: 'Validate, format, and minify JSON payloads.', category: 'Encoding', tags: ['json', 'format', 'validate'] },
+  { id: 'base64', name: 'Base64 Encode / Decode', shortName: 'Base64', description: 'Transform UTF-8 text locally in your browser.', category: 'Utilities', tags: ['base64', 'encode', 'decode'], featured: true },
+  { id: 'url-codec', name: 'URL Encode / Decode', shortName: 'URL codec', description: 'Encode or decode query values and URL components.', category: 'Utilities', tags: ['url', 'percent', 'decode'] },
+  { id: 'hash-generator', name: 'Encode & Crypto Lab', shortName: 'Crypto lab', description: 'Work with ten encoding, hashing, authentication, encryption, and key-derivation methods.', category: 'Utilities', tags: ['base64', 'url', 'sha256', 'sha384', 'sha512', 'hmac', 'aes', 'gcm', 'cbc', 'rsa', 'oaep', 'pbkdf2', 'encrypt', 'decrypt'], featured: true },
+  { id: 'json-formatter', name: 'JSON Formatter / Validator', shortName: 'JSON', description: 'Validate, format, and minify JSON payloads.', category: 'Utilities', tags: ['json', 'format', 'validate'] },
 ];
 
 export const toolById = new Map(tools.map((tool) => [tool.id, tool]));
+
+const codeByCategory: Record<ToolCategory, string> = {
+  'IP & Subnet': 'IP', DNS: 'DNS', Email: 'MAIL', Network: 'NET', Utilities: 'UTIL',
+};
+
+export function toolCode(tool: ToolDefinition) {
+  const position = tools.filter((item) => item.category === tool.category).findIndex((item) => item.id === tool.id) + 1;
+  return `${codeByCategory[tool.category]}/${position.toString().padStart(3, '0')}`;
+}

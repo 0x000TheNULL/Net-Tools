@@ -3,21 +3,19 @@
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import {
-  Activity, Braces, Cable, ChevronRight, Command as CommandIcon, Globe2,
-  History, Home, MailCheck, Menu, Moon, Network, Search, Star, Sun, X,
+  Activity, ChevronRight, Command as CommandIcon, History, Home, Menu, Moon,
+  Search, Star, Sun, X,
 } from 'lucide-react';
 
 import {
   Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput,
   CommandItem, CommandList, CommandShortcut,
 } from '@/components/ui/command';
-import { categories, toolById, tools } from '@/data/tools';
+import { categories, toolById, toolCode, tools } from '@/data/tools';
 import { ToolIcon, ToolSurface } from '@/features/tools/tool-surface';
 import type { ToolCategory } from '@/types/tools';
 
-const categoryIcons = {
-  'IP & Subnet': Network, DNS: Globe2, Email: MailCheck, Network: Cable, Encoding: Braces,
-};
+const categoryNumber = { 'IP & Subnet': '01', DNS: '02', Email: '03', Network: '04', Utilities: '05' } as const;
 
 function readStoredList(key: string) {
   try { return JSON.parse(localStorage.getItem(key) ?? '[]') as string[]; }
@@ -91,27 +89,26 @@ export function ToolboxApp() {
     <main className="toolbox-shell">
       {navOpen && <button className="mobile-scrim" onClick={() => setNavOpen(false)} aria-label="Close navigation" />}
       <aside className={navOpen ? 'toolbox-sidebar is-open' : 'toolbox-sidebar'}>
-        <div className="toolbox-brand"><span className="brand-symbol"><Network size={18} /></span><div><b>NET/OPS</b><small>ENGINEER TOOLBOX</small></div><button className="mobile-close" onClick={() => setNavOpen(false)} aria-label="Close navigation"><X size={16} /></button></div>
+        <div className="toolbox-brand"><span className="brand-symbol">MS</span><div><b>MUHAMMAD SYAWALLUDIN</b><small>NETWORK ENGINEER TOOLBOX</small></div><button className="mobile-close" onClick={() => setNavOpen(false)} aria-label="Close navigation"><X size={16} /></button></div>
         <div className="side-scroll">
-          <p className="side-label">Workspace</p>
-          <button className={category === 'All' ? 'side-link is-active' : 'side-link'} onClick={() => setCategory('All')}><Activity size={15} /><span>All tools</span><small>{tools.length}</small></button>
+          <p className="side-label">Field manual / chapters</p>
+          <button className={category === 'All' ? 'side-link is-active' : 'side-link'} onClick={() => setCategory('All')}><i>00</i><span>Overview</span><small>{tools.length}</small></button>
           {categories.map((item) => {
-            const Icon = categoryIcons[item.name];
-            return <button key={item.name} className={category === item.name ? 'side-link is-active' : 'side-link'} onClick={() => { setCategory(item.name); const first = tools.find((tool) => tool.category === item.name); if (first) openTool(first.id); }}><Icon size={15} /><span>{item.name}</span><small>{tools.filter((tool) => tool.category === item.name).length}</small></button>;
+            return <button key={item.name} className={category === item.name ? 'side-link is-active' : 'side-link'} onClick={() => { setCategory(item.name); const first = tools.find((tool) => tool.category === item.name); if (first) openTool(first.id); }}><i>{categoryNumber[item.name]}</i><span>{item.name}</span><small>{tools.filter((tool) => tool.category === item.name).length}</small></button>;
           })}
           <div className="side-divider" />
           <p className="side-label"><Star size={11} /> Favorites</p>
           {favorites.length ? favorites.slice(0, 5).map((id) => {
             const tool = toolById.get(id); if (!tool) return null;
-            return <button key={id} className={activeId === id ? 'side-tool is-active' : 'side-tool'} onClick={() => openTool(id)}><ToolIcon id={id} size={14} /><span>{tool.shortName}</span></button>;
+            return <button key={id} className={activeId === id ? 'side-tool is-active' : 'side-tool'} onClick={() => openTool(id)}><i>{toolCode(tool)}</i><span>{tool.shortName}</span></button>;
           }) : <p className="side-empty">Pin tools you use every day.</p>}
           <p className="side-label recent-label"><History size={11} /> Recent</p>
           {recent.slice(0, 4).map((id) => {
             const tool = toolById.get(id); if (!tool) return null;
-            return <button key={id} className={activeId === id ? 'side-tool is-active' : 'side-tool'} onClick={() => openTool(id)}><ToolIcon id={id} size={14} /><span>{tool.shortName}</span></button>;
+            return <button key={id} className={activeId === id ? 'side-tool is-active' : 'side-tool'} onClick={() => openTool(id)}><i>{toolCode(tool)}</i><span>{tool.shortName}</span></button>;
           })}
         </div>
-        <div className="side-status"><span /><div><b>Workspace ready</b><small>Local-first utilities</small></div></div>
+        <a className="side-status" href="https://msyaddin.cloud" target="_blank" rel="noreferrer"><span>↗</span><div><b>Personal site</b><small>msyaddin.cloud</small></div></a>
       </aside>
 
       <section className="toolbox-main">
@@ -129,13 +126,13 @@ export function ToolboxApp() {
               </div>
             )}
           </div>
-          <nav className="top-links" aria-label="Main navigation"><Link href="/"><Home size={14} /> Home</Link><Link href="/about">About</Link></nav>
+          <nav className="top-links" aria-label="Main navigation"><Link href="/"><Home size={14} /> Overview</Link><Link href="/about">Project note</Link><a href="https://msyaddin.cloud" target="_blank" rel="noreferrer">Personal site ↗</a></nav>
           <button className="icon-action" onClick={toggleTheme} aria-label={light ? 'Use dark theme' : 'Use light theme'}>{light ? <Moon size={16} /> : <Sun size={16} />}</button>
         </header>
 
         <div className="toolbox-content">
           <div className="workspace-meta">
-            <div><span>WORKSPACE / {activeTool.category.toUpperCase()}</span><b>{tools.length} focused utilities. Zero clutter.</b></div>
+            <div><span>FIELD MANUAL / {activeTool.category.toUpperCase()}</span><b>Practical utilities for the part of networking that usually takes five tabs.</b></div>
             <div className="workspace-pulse"><span /><small>Ready</small></div>
           </div>
           <div className="toolbox-layout">
@@ -144,12 +141,12 @@ export function ToolboxApp() {
               <section className="rail-module">
                 <div className="module-head"><span>{category === 'All' ? 'ALL TOOLS' : category.toUpperCase()}</span><b>{filtered.length.toString().padStart(2, '0')}</b></div>
                 <div className="catalog-list">
-                  {filtered.map((tool) => <button key={tool.id} className={activeId === tool.id ? 'catalog-tool is-active' : 'catalog-tool'} onClick={() => openTool(tool.id)}><span><ToolIcon id={tool.id} size={15} /></span><div><b>{tool.shortName}</b><small>{tool.description}</small></div>{favorites.includes(tool.id) && <Star size={11} className="catalog-star" />}</button>)}
+                  {filtered.map((tool) => <button key={tool.id} className={activeId === tool.id ? 'catalog-tool is-active' : 'catalog-tool'} onClick={() => openTool(tool.id)}><span>{toolCode(tool)}</span><div><b>{tool.shortName}</b><small>{tool.description}</small></div>{favorites.includes(tool.id) && <Star size={11} className="catalog-star" />}</button>)}
                 </div>
               </section>
               <section className="rail-module rail-insight">
                 <div className="module-head"><span>ENGINEERING NOTE</span><Activity size={13} /></div>
-                <p>Browser-safe calculations and encoders stay on this device. DNS checks use encrypted DNS-over-HTTPS.</p>
+                <p>Calculations and cryptographic operations stay on this device. DNS checks use encrypted DNS-over-HTTPS.</p>
                 <div className="signal-meter"><span /><span /><span /><span /><span /></div>
               </section>
             </aside>

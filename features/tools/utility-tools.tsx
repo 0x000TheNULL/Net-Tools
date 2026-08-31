@@ -2,10 +2,11 @@
 
 import { useMemo, useState } from 'react';
 
-import { decodeBase64, encodeBase64, hashText } from '@/lib/codec';
+import { decodeBase64, encodeBase64 } from '@/lib/codec';
 import { commonPorts, httpStatuses, ipRanges, vlanRanges } from '@/lib/reference-data';
 import type { ResultRow } from '@/types/tools';
 import { EmptyState, ErrorState, Field, FormActions, ReferenceTable, Results, SelectField, WorkForm } from './shared';
+import { CryptoLab } from './crypto-lab';
 
 export function PortReference() {
   const [query, setQuery] = useState('');
@@ -69,33 +70,7 @@ export function Base64Tool() { return <CodecTool mode="base64" />; }
 export function UrlCodecTool() { return <CodecTool mode="url" />; }
 
 export function HashGenerator() {
-  const [algorithm, setAlgorithm] = useState<'MD5' | 'SHA-1' | 'SHA-256'>('SHA-256');
-  const [value, setValue] = useState('network-engineer-toolbox');
-  const [rows, setRows] = useState<ResultRow[] | null>(null);
-  const [loading, setLoading] = useState(false);
-  const run = async () => {
-    setLoading(true);
-    try {
-      const digest = await hashText(value, algorithm);
-      setRows([
-        { label: 'Algorithm', value: algorithm },
-        { label: 'Hex digest', value: digest, tone: 'success' },
-        { label: 'Digest length', value: `${digest.length * 4} bits` },
-      ]);
-    } finally { setLoading(false); }
-  };
-  return (
-    <>
-      <WorkForm onSubmit={run}>
-        <SelectField label="Algorithm" value={algorithm} onChange={(next) => setAlgorithm(next as typeof algorithm)}>
-          <option>MD5</option><option>SHA-1</option><option>SHA-256</option>
-        </SelectField>
-        <label className="work-field textarea-field"><span>Input text</span><textarea value={value} onChange={(event) => setValue(event.target.value)} rows={6} spellCheck={false} /></label>
-        <FormActions loading={loading} onRun={run} onReset={() => { setValue(''); setRows(null); }} runLabel="Generate digest" />
-      </WorkForm>
-      {rows ? <Results rows={rows} title="Local hash result" note="MD5 and SHA-1 are included for compatibility checks, not password storage or modern security use." /> : <EmptyState />}
-    </>
-  );
+  return <CryptoLab />;
 }
 
 const sampleJson = `{

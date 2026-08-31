@@ -3,7 +3,7 @@ export type ToolCategory =
   | 'DNS'
   | 'Email'
   | 'Network'
-  | 'Encoding';
+  | 'Utilities';
 
 export type ToolDefinition = {
   id: string;

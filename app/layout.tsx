@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Manrope, Geist_Mono } from 'next/font/google';
 import './globals.css';
 
-const geistSans = Geist({
+const geistSans = Manrope({
   variable: '--font-geist-sans',
   subsets: ['latin'],
 });
@@ -18,19 +18,20 @@ export const metadata: Metadata = {
     template: '%s | Network Engineer Toolbox',
   },
   description:
-    'A precision workspace for IP, DNS, email authentication, and infrastructure utilities.',
+    'An interactive engineering field manual for IP, DNS, email, networking, encoding, and browser-native cryptography.',
   keywords: [
     'network engineer tools',
     'subnet calculator',
     'DNS lookup',
     'SPF DKIM DMARC',
     'infrastructure utilities',
+    'AES RSA SHA-256 tools',
   ],
   openGraph: {
     type: 'website',
     title: 'Network Engineer Toolbox',
     description:
-      'A precision workspace for IP, DNS, email authentication, and infrastructure utilities.',
+      'An interactive engineering field manual for networking, diagnostics, and browser-native cryptography.',
     images: [{
       url: 'https://network-engineer-toolbox-eikon.diskoginza.chatgpt.site/og.png',
       width: 1200,
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Network Engineer Toolbox',
     description:
-      'A precision workspace for IP, DNS, email authentication, and infrastructure utilities.',
+      'An interactive engineering field manual for networking, diagnostics, and browser-native cryptography.',
     images: ['https://network-engineer-toolbox-eikon.diskoginza.chatgpt.site/og.png'],
   },
 };
