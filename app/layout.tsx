@@ -31,14 +31,19 @@ export const metadata: Metadata = {
     title: 'Network Engineer Toolbox',
     description:
       'A precision workspace for IP, DNS, email authentication, and infrastructure utilities.',
-    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Network Engineer Toolbox' }],
+    images: [{
+      url: 'https://network-engineer-toolbox-eikon.diskoginza.chatgpt.site/og.png',
+      width: 1200,
+      height: 630,
+      alt: 'Network Engineer Toolbox',
+    }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Network Engineer Toolbox',
     description:
       'A precision workspace for IP, DNS, email authentication, and infrastructure utilities.',
-    images: ['/og.png'],
+    images: ['https://network-engineer-toolbox-eikon.diskoginza.chatgpt.site/og.png'],
   },
 };
 
