@@ -1256,3 +1256,415 @@ body { background: var(--background); color: var(--foreground); font-family: var
   .about-page .about-principles article { min-height: 180px; border-right: 0; border-bottom: 1px solid var(--border); }
   .about-page .about-section-head { grid-template-columns: 1fr; gap: 20px; }
 }
+
+/* About page — isolated responsive layout */
+.about-page {
+  overflow: clip;
+}
+
+.about-page .about-nav {
+  width: 100%;
+  min-height: 80px;
+  padding: 0 clamp(24px, 7vw, 96px);
+  background: rgba(233, 224, 210, .92);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+}
+
+.about-page .about-nav a {
+  min-height: 42px;
+  font-size: 11px;
+  font-weight: 650;
+  transition: color .2s, background-color .2s, transform .25s var(--ease);
+}
+
+.about-page .about-nav .about-back-link:hover {
+  color: var(--foreground);
+}
+
+.about-page .about-nav .about-nav-action {
+  padding: 0 16px;
+  color: #fff7eb;
+  background: var(--accent);
+}
+
+.about-page .about-nav .about-nav-action:hover,
+.about-page .about-final a:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.about-page .about-hero {
+  width: min(100%, 1600px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, .58fr);
+  align-items: end;
+  gap: clamp(52px, 8vw, 132px);
+  padding: clamp(86px, 10vw, 156px) clamp(24px, 7vw, 96px) clamp(92px, 11vw, 170px);
+}
+
+.about-page .about-hero .about-kicker {
+  grid-column: 1 / -1;
+  margin: 0 0 clamp(-22px, -2vw, -12px);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.about-page .about-hero h1 {
+  max-width: 900px;
+  margin: 0;
+  font-size: clamp(54px, 7.2vw, 108px);
+  font-weight: 620;
+  line-height: .91;
+  letter-spacing: -.07em;
+  text-wrap: balance;
+}
+
+.about-page .about-hero .about-hero-copy {
+  max-width: 480px;
+  align-self: end;
+}
+
+.about-page .about-hero .about-hero-copy p {
+  margin: 0;
+  color: var(--foreground-secondary);
+  font-size: clamp(13px, 1.05vw, 16px);
+  line-height: 1.72;
+}
+
+.about-page .about-hero .about-hero-copy p + p {
+  margin-top: 18px;
+}
+
+.about-page .about-principles {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--border-strong);
+  border-bottom: 1px solid var(--border-strong);
+}
+
+.about-page .about-principles article {
+  min-width: 0;
+  min-height: 276px;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(34px, 4vw, 60px) clamp(24px, 4.5vw, 72px);
+  border-right: 1px solid var(--border);
+}
+
+.about-page .about-principles article:last-child {
+  border-right: 0;
+}
+
+.about-page .about-principles span {
+  color: var(--foreground-muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.about-page .about-principles h2 {
+  margin: auto 0 0;
+  color: var(--foreground);
+  font-size: clamp(19px, 1.5vw, 24px);
+  font-weight: 650;
+  letter-spacing: -.035em;
+}
+
+.about-page .about-principles p {
+  max-width: 390px;
+  margin: 14px 0 0;
+  color: var(--foreground-secondary);
+  font-size: 12px;
+  line-height: 1.68;
+}
+
+.about-page .about-categories {
+  width: min(100%, 1600px);
+  margin: 0 auto;
+  padding: clamp(88px, 9vw, 140px) clamp(24px, 7vw, 96px);
+}
+
+.about-page .about-section-head {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(180px, .55fr) minmax(0, 1.45fr);
+  align-items: end;
+  gap: clamp(40px, 7vw, 120px);
+  margin: 0 0 clamp(44px, 5vw, 72px);
+}
+
+.about-page .about-section-head p {
+  margin: 0;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.about-page .about-section-head h2 {
+  max-width: 900px;
+  margin: 0;
+  color: var(--foreground);
+  font-size: clamp(42px, 5.25vw, 80px);
+  font-weight: 620;
+  line-height: .96;
+  letter-spacing: -.065em;
+  text-wrap: balance;
+}
+
+.about-page .about-categories .about-category-list {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--border-strong);
+}
+
+.about-page .about-category-list .about-category-card {
+  min-width: 0;
+  min-height: 184px;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  grid-template-rows: 1fr auto;
+  align-items: start;
+  gap: 22px;
+  padding: 28px clamp(24px, 3vw, 46px) 26px 0;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.about-page .about-category-list .about-category-card:nth-child(odd) {
+  padding-right: clamp(28px, 4vw, 64px);
+  border-right: 1px solid var(--border);
+}
+
+.about-page .about-category-list .about-category-card:nth-child(even) {
+  padding-left: clamp(28px, 4vw, 64px);
+}
+
+.about-page .about-category-list .about-category-index {
+  grid-column: 1;
+  grid-row: 1;
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.about-page .about-category-list .about-category-card > div {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+}
+
+.about-page .about-category-list h3 {
+  margin: 0;
+  color: var(--foreground);
+  font-size: clamp(20px, 1.7vw, 27px);
+  font-weight: 650;
+  letter-spacing: -.04em;
+}
+
+.about-page .about-category-list p {
+  max-width: 460px;
+  margin: 13px 0 0;
+  color: var(--foreground-secondary);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.about-page .about-category-list .about-category-count {
+  grid-column: 2;
+  grid-row: 2;
+  color: var(--foreground-muted);
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.about-page .about-final {
+  width: 100%;
+  min-height: 300px;
+  margin: 0;
+  padding: clamp(64px, 7vw, 108px) clamp(24px, 7vw, 96px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 48px;
+  color: var(--foreground);
+  border: 0;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+  background: var(--surface-subtle);
+}
+
+.about-page .about-final h2 {
+  max-width: 900px;
+  margin: 0;
+  color: var(--foreground);
+  font-size: clamp(38px, 4.6vw, 70px);
+  font-weight: 620;
+  line-height: .98;
+  letter-spacing: -.06em;
+  text-wrap: balance;
+}
+
+.about-page .about-final p {
+  margin: 18px 0 0;
+  color: var(--foreground-secondary);
+  font-size: 13px;
+}
+
+.about-page .about-final a {
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  padding: 0 18px;
+  color: #fff7eb;
+  background: var(--accent);
+  font-size: 11px;
+  font-weight: 650;
+  white-space: nowrap;
+  transition: background-color .2s, transform .25s var(--ease);
+}
+
+@media (max-width: 900px) {
+  .about-page .about-hero {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  .about-page .about-hero .about-kicker {
+    margin-bottom: -16px;
+  }
+
+  .about-page .about-hero .about-hero-copy {
+    max-width: 680px;
+  }
+
+  .about-page .about-principles {
+    grid-template-columns: 1fr;
+  }
+
+  .about-page .about-principles article {
+    min-height: 190px;
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .about-page .about-principles article:last-child {
+    border-bottom: 0;
+  }
+
+  .about-page .about-category-list .about-category-card {
+    min-height: 200px;
+  }
+
+  .about-page .about-final {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 680px) {
+  .about-page .about-nav {
+    min-height: 68px;
+    padding: 0 18px;
+  }
+
+  .about-page .about-nav .about-nav-action {
+    min-height: 38px;
+    padding: 0 13px;
+  }
+
+  .about-page .about-hero {
+    gap: 34px;
+    padding: 68px 18px 82px;
+  }
+
+  .about-page .about-hero .about-kicker {
+    margin-bottom: -8px;
+  }
+
+  .about-page .about-hero h1 {
+    max-width: 560px;
+    font-size: clamp(44px, 14vw, 68px);
+    line-height: .94;
+  }
+
+  .about-page .about-hero .about-hero-copy p {
+    font-size: 13px;
+    line-height: 1.68;
+  }
+
+  .about-page .about-principles article {
+    min-height: 176px;
+    padding: 28px 18px;
+  }
+
+  .about-page .about-principles h2 {
+    font-size: 20px;
+  }
+
+  .about-page .about-categories {
+    padding: 76px 18px 84px;
+  }
+
+  .about-page .about-section-head {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 42px;
+  }
+
+  .about-page .about-section-head h2 {
+    max-width: 520px;
+    font-size: clamp(40px, 12vw, 58px);
+    line-height: .97;
+  }
+
+  .about-page .about-categories .about-category-list {
+    display: block;
+  }
+
+  .about-page .about-category-list .about-category-card,
+  .about-page .about-category-list .about-category-card:nth-child(odd),
+  .about-page .about-category-list .about-category-card:nth-child(even) {
+    min-height: 0;
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 18px;
+    padding: 24px 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .about-page .about-category-list h3 {
+    font-size: 21px;
+  }
+
+  .about-page .about-category-list p {
+    margin-top: 9px;
+    font-size: 11px;
+  }
+
+  .about-page .about-category-list .about-category-count {
+    margin-top: 6px;
+  }
+
+  .about-page .about-final {
+    min-height: 0;
+    gap: 34px;
+    padding: 68px 18px;
+  }
+
+  .about-page .about-final h2 {
+    font-size: clamp(37px, 11vw, 54px);
+  }
+
+  .about-page .home-footer {
+    padding: 34px 18px;
+  }
+}
