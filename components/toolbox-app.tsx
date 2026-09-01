@@ -80,7 +80,7 @@ export function ToolboxApp() {
       {navOpen && <button className="mobile-scrim" onClick={() => setNavOpen(false)} aria-label="Close navigation" />}
       <aside className={navOpen ? 'toolbox-sidebar is-open' : 'toolbox-sidebar'}>
         <div className="toolbox-brand">
-          <a href="/"><span className="brand-symbol">MS</span><span><b>Network Engineer Toolbox</b><small>Practical network utilities</small></span></a>
+          <a href="/"><span className="brand-symbol"><img src="/brand-mark.png" alt="" aria-hidden="true" /></span><span><b>Network Engineer Toolbox</b><small>Practical network utilities</small></span></a>
           <button className="mobile-close" onClick={() => setNavOpen(false)} aria-label="Close navigation"><X size={18} /></button>
         </div>
 
@@ -123,7 +123,7 @@ export function ToolboxApp() {
       <section className="toolbox-main">
         <header className="toolbox-topbar">
           <button className="mobile-menu" onClick={() => setNavOpen(true)} aria-label="Open navigation"><Menu size={19} /></button>
-          <div className="mobile-product-name">Network Engineer Toolbox</div>
+          <div className="mobile-product-name"><img src="/brand-mark.png" alt="" aria-hidden="true" /><span>Network Engineer Toolbox</span></div>
           <button className="mobile-search-button" onClick={() => setCommandOpen(true)} aria-label="Search tools"><Search size={18} /></button>
           <div className="global-search">
             <Search size={16} />
@@ -142,7 +142,7 @@ export function ToolboxApp() {
 
         <div className="toolbox-content">
           <ToolSurface tool={activeTool} favorite={favorites.includes(activeId)} onToggleFavorite={() => toggleFavorite(activeId)} />
-          <footer className="workspace-footer"><span>Network Engineer Toolbox</span><span>Built by Muhammad Syawalludin</span><a href="https://github.com/0x000TheNULL/Net-Tools" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={12} /></a></footer>
+          <footer className="workspace-footer"><span className="workspace-brand"><img src="/brand-mark.png" alt="" aria-hidden="true" />Network Engineer Toolbox</span><span>Built by Muhammad Syawalludin</span><a href="https://github.com/0x000TheNULL/Net-Tools" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={12} /></a></footer>
         </div>
       </section>
 

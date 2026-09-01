@@ -9,7 +9,7 @@ export function LandingPage() {
     <main className="product-home">
       <header className="home-nav">
         <a className="home-brand" href="/">
-          <span className="home-brand-mark">MS</span>
+          <span className="home-brand-mark"><img src="/brand-mark.png" alt="" aria-hidden="true" /></span>
           <span><strong>Network Engineer Toolbox</strong><small>Practical network utilities</small></span>
         </a>
         <nav aria-label="Main navigation">
@@ -74,7 +74,10 @@ export function LandingPage() {
       </section>
 
       <footer className="home-footer">
-        <div><strong>Network Engineer Toolbox</strong><span>Built by Muhammad Syawalludin</span></div>
+        <div className="home-footer-brand">
+          <a className="footer-brand-mark" href="https://msyaddin.cloud" target="_blank" rel="noreferrer" aria-label="Open Muhammad Syawalludin's portfolio"><img src="/brand-mark.png" alt="" aria-hidden="true" /></a>
+          <div><strong>Network Engineer Toolbox</strong><span>Built by Muhammad Syawalludin</span></div>
+        </div>
         <nav><a href="https://msyaddin.cloud" target="_blank" rel="noreferrer">msyaddin.cloud</a><a href="https://github.com/0x000TheNULL/Net-Tools" target="_blank" rel="noreferrer">GitHub</a></nav>
       </footer>
     </main>

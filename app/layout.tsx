@@ -27,6 +27,11 @@ export const metadata: Metadata = {
     'infrastructure utilities',
     'AES RSA SHA-256 tools',
   ],
+  icons: {
+    icon: '/brand-mark.png',
+    shortcut: '/brand-mark.png',
+    apple: '/brand-mark.png',
+  },
   openGraph: {
     type: 'website',
     title: 'Network Engineer Toolbox',

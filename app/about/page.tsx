@@ -13,6 +13,7 @@ export default function AboutPage() {
     <main className="about-page">
       <header className="about-nav" aria-label="About page navigation">
         <a className="about-back-link" href="/"><ArrowLeft size={14} /> Back home</a>
+        <a className="about-portfolio-mark" href="https://msyaddin.cloud" target="_blank" rel="noreferrer" aria-label="Open Muhammad Syawalludin's portfolio"><img src="/brand-mark.png" alt="" aria-hidden="true" /></a>
         <a className="about-nav-action" href="/toolbox">Open toolbox <ArrowRight size={14} /></a>
       </header>
 
@@ -56,7 +57,10 @@ export default function AboutPage() {
       </section>
 
       <footer className="home-footer about-footer">
-        <div><strong>Network Engineer Toolbox</strong><span>Built by Muhammad Syawalludin</span></div>
+        <div className="home-footer-brand">
+          <a className="footer-brand-mark" href="https://msyaddin.cloud" target="_blank" rel="noreferrer" aria-label="Open Muhammad Syawalludin's portfolio"><img src="/brand-mark.png" alt="" aria-hidden="true" /></a>
+          <div><strong>Network Engineer Toolbox</strong><span>Built by Muhammad Syawalludin</span></div>
+        </div>
         <nav><a href="https://msyaddin.cloud" target="_blank" rel="noreferrer">msyaddin.cloud <ArrowUpRight size={11} /></a><a href="https://github.com/0x000TheNULL/Net-Tools" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={11} /></a></nav>
       </footer>
     </main>
