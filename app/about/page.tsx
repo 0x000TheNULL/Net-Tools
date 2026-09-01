@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import type { Metadata } from 'next';
 import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react';
 
@@ -13,8 +12,8 @@ export default function AboutPage() {
   return (
     <main className="about-page">
       <header className="about-nav">
-        <Link href="/"><ArrowLeft size={14} /> Back home</Link>
-        <Link href="/toolbox">Open toolbox <ArrowRight size={14} /></Link>
+        <a href="/"><ArrowLeft size={14} /> Back home</a>
+        <a href="/toolbox">Open toolbox <ArrowRight size={14} /></a>
       </header>
 
       <section className="about-hero">
@@ -40,7 +39,7 @@ export default function AboutPage() {
 
       <section className="about-final">
         <div><h2>Ready when the next network question shows up.</h2><p>Start with the subnet calculator, or search the full directory.</p></div>
-        <Link href="/toolbox">Open toolbox <ArrowRight size={14} /></Link>
+        <a href="/toolbox">Open toolbox <ArrowRight size={14} /></a>
       </section>
 
       <footer className="home-footer about-footer">

@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import {
   ArrowUpRight, ChevronRight, Command as CommandIcon, History, Home, Menu,
@@ -81,7 +80,7 @@ export function ToolboxApp() {
       {navOpen && <button className="mobile-scrim" onClick={() => setNavOpen(false)} aria-label="Close navigation" />}
       <aside className={navOpen ? 'toolbox-sidebar is-open' : 'toolbox-sidebar'}>
         <div className="toolbox-brand">
-          <Link href="/"><span className="brand-symbol">MS</span><span><b>Network Engineer Toolbox</b><small>Practical network utilities</small></span></Link>
+          <a href="/"><span className="brand-symbol">MS</span><span><b>Network Engineer Toolbox</b><small>Practical network utilities</small></span></a>
           <button className="mobile-close" onClick={() => setNavOpen(false)} aria-label="Close navigation"><X size={18} /></button>
         </div>
 
@@ -118,7 +117,7 @@ export function ToolboxApp() {
           )}
         </nav>
 
-        <div className="sidebar-footer"><Link href="/">Home</Link><Link href="/about">About</Link><a href="https://msyaddin.cloud" target="_blank" rel="noreferrer">Portfolio <ArrowUpRight size={12} /></a></div>
+        <div className="sidebar-footer"><a href="/">Home</a><a href="/about">About</a><a href="https://msyaddin.cloud" target="_blank" rel="noreferrer">Portfolio <ArrowUpRight size={12} /></a></div>
       </aside>
 
       <section className="toolbox-main">
@@ -138,7 +137,7 @@ export function ToolboxApp() {
               </div>
             )}
           </div>
-          <nav className="top-links" aria-label="Main navigation"><Link href="/"><Home size={14} /> Home</Link><Link href="/about">About</Link></nav>
+          <nav className="top-links" aria-label="Main navigation"><a href="/"><Home size={14} /> Home</a><a href="/about">About</a></nav>
         </header>
 
         <div className="toolbox-content">

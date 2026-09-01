@@ -6,8 +6,8 @@ import { cidrToMask, classifyIPv4, maskToCidr, rangeRows, subnetRows, wildcardFr
 import type { ResultRow } from '@/types/tools';
 import { EmptyState, ErrorState, Field, FormActions, ReferenceTable, Results, WorkForm } from './shared';
 
-function useToolResult(initial?: ResultRow[]) {
-  const [rows, setRows] = useState<ResultRow[] | null>(initial ?? null);
+function useToolResult(initial?: () => ResultRow[]) {
+  const [rows, setRows] = useState<ResultRow[] | null>(() => initial?.() ?? null);
   const [error, setError] = useState('');
   const run = (calculation: () => ResultRow[]) => {
     try { setRows(calculation()); setError(''); } catch (reason) {
@@ -21,7 +21,7 @@ function useToolResult(initial?: ResultRow[]) {
 export function SubnetCalculator() {
   const [ip, setIp] = useState('192.168.10.42');
   const [cidr, setCidr] = useState('24');
-  const result = useToolResult(subnetRows(ip, Number(cidr)));
+  const result = useToolResult(() => subnetRows('192.168.10.42', 24));
   const calculate = () => result.run(() => subnetRows(ip, Number(cidr)));
   return (
     <>

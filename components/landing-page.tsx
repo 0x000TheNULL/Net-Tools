@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { ArrowRight, ArrowUpRight, Copy } from 'lucide-react';
 
 import { categories, tools } from '@/data/tools';
@@ -9,16 +8,16 @@ export function LandingPage() {
   return (
     <main className="product-home">
       <header className="home-nav">
-        <Link className="home-brand" href="/">
+        <a className="home-brand" href="/">
           <span className="home-brand-mark">MS</span>
           <span><strong>Network Engineer Toolbox</strong><small>Practical network utilities</small></span>
-        </Link>
+        </a>
         <nav aria-label="Main navigation">
           <a href="#tools">Tools</a>
-          <Link href="/about">About</Link>
+          <a href="/about">About</a>
           <a href="https://msyaddin.cloud" target="_blank" rel="noreferrer">Portfolio <ArrowUpRight size={13} /></a>
         </nav>
-        <Link className="home-nav-action" href="/toolbox">Open toolbox <ArrowRight size={14} /></Link>
+        <a className="home-nav-action" href="/toolbox">Open toolbox <ArrowRight size={14} /></a>
       </header>
 
       <section className="home-hero">
@@ -27,7 +26,7 @@ export function LandingPage() {
           <h1>Practical network calculations, diagnostics, and references.</h1>
           <p className="home-intro">A collection of tools for subnetting, DNS, email authentication, encoding, cryptography, and everyday network engineering tasks.</p>
           <div className="home-actions">
-            <Link className="home-primary-action" href="/toolbox">Open toolbox <ArrowRight size={15} /></Link>
+            <a className="home-primary-action" href="/toolbox">Open toolbox <ArrowRight size={15} /></a>
             <a className="home-secondary-action" href="#tools">Browse tools</a>
           </div>
         </div>
@@ -55,11 +54,11 @@ export function LandingPage() {
                 <header><h3>{category.name}</h3><p>{category.description}</p></header>
                 <div>
                   {group.map((tool) => (
-                    <Link href={`/toolbox?tool=${tool.id}`} key={tool.id}>
+                    <a href={`/toolbox?tool=${tool.id}`} key={tool.id}>
                       <span><strong>{tool.name}</strong><small>{tool.description}</small></span>
                       {featuredIds.has(tool.id) && <em>Popular</em>}
                       <ArrowRight size={15} />
-                    </Link>
+                    </a>
                   ))}
                 </div>
               </section>
@@ -71,7 +70,7 @@ export function LandingPage() {
       <section className="home-note">
         <div><p>Built for everyday work</p><h2>Engineering depth, without the visual noise.</h2></div>
         <p>Calculations stay detailed, technical values stay readable, and every screen is designed to help you reach the next useful answer.</p>
-        <Link href="/toolbox">Start with the subnet calculator <ArrowRight size={14} /></Link>
+        <a href="/toolbox">Start with the subnet calculator <ArrowRight size={14} /></a>
       </section>
 
       <footer className="home-footer">
